@@ -121,6 +121,15 @@ def calculate_stock_data(data):
 
     return new_stock_data
 
+def get_stock_values(data):
+    print('geting stock heading')
+    
+    headings = SHEET.worksheet("stock").row_values(1)
+    
+    {headings : data for heding in headings}
+    print(headings)
+
+
 
 
 def main():
@@ -135,6 +144,19 @@ def main():
     sales_columns = get_last_5_entries_sales()
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, 'stock')
+    get_stock_values(data)
+    return stock_data
+    
 
 print('welcome!')
 main()
+def get_stock_values(data):
+    headings = SHEET.worksheet("stock").row_values(1)
+    stock_values = {}
+    for i in range(len(headings)):
+        stock_values[headings[i]] = stock_data[i]
+    
+    return stock_values
+    
+stock_values = get_stock_values(stock_data)
+print(stock_values)
